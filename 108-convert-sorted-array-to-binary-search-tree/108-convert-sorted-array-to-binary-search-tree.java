@@ -18,24 +18,23 @@ class Solution {
         
         if(nums.length == 0) return null;
         
+        TreeNode result = makeBST(nums, 0, nums.length -1);
         
-        TreeNode node = helper(nums, 0, nums.length - 1);
-        return node;
+        return result;
         
     }
     
-    public TreeNode helper(int[] nums, int low, int high) {
+    public TreeNode makeBST(int[] nums, int low, int high){
         
-        if (low > high) {
-            return null;
-        }
+        if(low>high) return null;
         
         int mid = (low + high) / 2;
         
-        TreeNode tempNode = new TreeNode(nums[mid]);
-        tempNode.left = helper(nums, low, mid - 1);
-        tempNode.right = helper(nums, mid + 1, high);
+        TreeNode node = new TreeNode(nums[mid]);
+        node.left = makeBST(nums, low, mid-1);
+        node.right = makeBST(nums, mid+1, high);
         
-        return tempNode;
+        return node;
+        
     }
 }
